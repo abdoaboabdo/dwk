@@ -92,6 +92,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                               <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="price">السعر</label>
+                                       <input type="text" name="price" id="price" class="form-control " placeholder="ادخل السعر">
+                                   </div>
+                               </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="description">الوصف</label>
+                                        <input type="text" name="description" id="description" class="form-control " placeholder="ادخل السعر">
+                                    </div>
+                                </div>
+                            </div>
 
 
                         </div>
@@ -118,12 +134,13 @@
                         $('.wood').fadeIn()
                     });
 
-                }
-                if (e.target.value === 'المونيوم'){
+                }else if (e.target.value === 'المونيوم'){
                     $('.wood').fadeOut(function () {
                         $('.aluminum').fadeIn()
                     });
 
+                }else {
+                    $('.wood ,.aluminum').fadeOut()
                 }
             })
         });

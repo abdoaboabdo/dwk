@@ -22,7 +22,25 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{Request::is('dashboard/doors') ? 'active':' '}}"><a href="{{route('dashboard.doors.index')}}"><i class="fa fa-circle-o"></i>كل الأبواب</a></li>
-                    <li class="{{Request::is('dashboard/doors/create') ? 'active':' '}}"><a href="{{route('dashboard.doors.create')}}"><i class="fa fa-circle-o"></i>اضافة باب جديد</a></li>
+                    <li class="{{Request::is('dashboard/doors/create') ? 'active':' '}}"><a href="{{route('dashboard.doors.create')}}"><i class="fa fa-circle-o"></i>اضافة نافذة جديد</a></li>
+                </ul>
+            </li>
+            <li class=" treeview {{Request::is('dashboard/windows') || Request::is('dashboard/windows/create') ? 'active' : ' '}}">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>النوافذ</span> <i class="fa fa-angle-right pull-left"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{Request::is('dashboard/windows') ? 'active':' '}}"><a href="{{route('dashboard.windows.index')}}"><i class="fa fa-circle-o"></i>كل النوافذ</a></li>
+                    <li class="{{Request::is('dashboard/windows/create') ? 'active':' '}}"><a href="{{route('dashboard.windows.create')}}"><i class="fa fa-circle-o"></i>اضافة نافذة جديدة</a></li>
+                </ul>
+            </li>
+            <li class=" treeview {{Request::is('dashboard/kitchens') || Request::is('dashboard/kitchens/create') ? 'active' : ' '}}">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>المطابخ</span> <i class="fa fa-angle-right pull-left"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{Request::is('dashboard/kitchens') ? 'active':' '}}"><a href="{{route('dashboard.kitchens.index')}}"><i class="fa fa-circle-o"></i>كل المطابخ</a></li>
+                    <li class="{{Request::is('dashboard/kitchens/create') ? 'active':' '}}"><a href="{{route('dashboard.kitchens.create')}}"><i class="fa fa-circle-o"></i>اضافة مطبخc جديد</a></li>
                 </ul>
             </li>
             @if (auth()->user()->hasPermission('read_users'))
