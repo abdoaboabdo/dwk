@@ -24,7 +24,7 @@ class KitchenController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.kitchens.create');
     }
 
     /**

@@ -24,7 +24,7 @@ class WindowController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.windows.create');
     }
 
     /**

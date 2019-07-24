@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/css/skin-blue.min.css') }}">
+    <link rel="stylesheet" href="{{asset('dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 
 {{--    @if (app()->getLocale() == 'ar')--}}
         <link rel="stylesheet" href="{{ asset('dashboard/css/font-awesome-rtl.min.css') }}">
@@ -160,7 +161,8 @@
 
 {{--<!-- Bootstrap 3.3.7 -->--}}
 <script src="{{ asset('dashboard/js/bootstrap.min.js') }}"></script>
-
+<script src="{{asset('dashboard/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('dashboard/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 {{--icheck--}}
 <script src="{{ asset('dashboard/plugins/icheck/icheck.min.js') }}"></script>
 

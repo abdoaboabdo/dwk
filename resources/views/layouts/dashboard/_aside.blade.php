@@ -22,7 +22,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{Request::is('dashboard/doors') ? 'active':' '}}"><a href="{{route('dashboard.doors.index')}}"><i class="fa fa-circle-o"></i>كل الأبواب</a></li>
-                    <li class="{{Request::is('dashboard/doors/create') ? 'active':' '}}"><a href="{{route('dashboard.doors.create')}}"><i class="fa fa-circle-o"></i>اضافة نافذة جديد</a></li>
+                    <li class="{{Request::is('dashboard/doors/create') ? 'active':' '}}"><a href="{{route('dashboard.doors.create')}}"><i class="fa fa-circle-o"></i>اضافة باب جديد</a></li>
                 </ul>
             </li>
             <li class=" treeview {{Request::is('dashboard/windows') || Request::is('dashboard/windows/create') ? 'active' : ' '}}">

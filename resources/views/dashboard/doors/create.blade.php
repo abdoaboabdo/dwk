@@ -34,7 +34,7 @@
                             <div class="row " style="position: relative;">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="door_type">@lang('site.door')</label>
+                                        <label for="door_type">نوع الباب</label>
                                         <select name="door_type" id="door_type" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر نوع الباب</option>
                                             <option value="خشب">باب خشب</option>
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-md-4 wood" >
                                     <div class="form-group">
-                                        <label for="Wood_type">اختر نوع الخشب</label>
+                                        <label for="Wood_type">نوع الخشب</label>
                                         <select name="Wood_type" id="Wood_type" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر نوع الخشب</option>
                                             <option value="سويدي">سويدي</option>
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="col-md-4 aluminum">
                                     <div class="form-group">
-                                        <label for="aluminum_type">اختر الالمونيوم</label>
+                                        <label for="aluminum_type">نوع الالمونيوم</label>
                                         <select name="aluminum_type" id="aluminum_type" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر نوع الالمونيوم</option>
                                             <option value="زجاج">زجاج</option>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="col-md-4 aluminum">
                                     <div class="form-group">
-                                        <label for="thickness_type">اختر السماكة</label>
+                                        <label for="thickness_type"> السماكة</label>
                                         <select name="thickness_type" id="thickness_type" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر السماكة</option>
                                             <option value="1.3">1.3</option>
@@ -104,7 +104,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="description">الوصف</label>
-                                        <input type="text" name="description" id="description" class="form-control " placeholder="ادخل السعر">
+{{--                                        <input type="text" name="description" id="description" class="form-control " placeholder="ادخل السعر">--}}
+                                        <textarea name="description" id="description" class="form-control " cols="30" rows="10" placeholder="ادخل الوصف"></textarea>
                                     </div>
                                 </div>
                             </div>
