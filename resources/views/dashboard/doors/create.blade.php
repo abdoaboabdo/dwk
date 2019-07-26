@@ -50,8 +50,8 @@
                                         <label for="inside_type">داخلي ¦ خارجي</label>
                                         <select name="inside_type" id="inside_type" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">داخلي ¦ خارجي</option>
-                                            <option value="داخلي">داخلي</option>
-                                            <option value="خارجي">خارجي</option>
+                                            <option value="0">داخلي</option>
+                                            <option value="1">خارجي</option>
                                         </select>
                                     </div>
                                 </div>
@@ -60,12 +60,9 @@
                                         <label for="Wood_type">نوع الخشب</label>
                                         <select name="Wood_type" id="Wood_type" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر نوع الخشب</option>
-                                            <option value="سويدي">سويدي</option>
-                                            <option value="ماجنو">ماجنو</option>
-                                            <option value="زان">زان</option>
-                                            <option value="روك">روك</option>
-                                            <option value="مازدني">مازدني</option>
-                                            <option value="جوز">جوز</option>
+                                            @foreach ($woodTypes as $woodType)
+                                                <option value="{{$woodType->id}}">{{$woodType->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -74,9 +71,9 @@
                                         <label for="aluminum_type">نوع الالمونيوم</label>
                                         <select name="aluminum_type" id="aluminum_type" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر نوع الالمونيوم</option>
-                                            <option value="زجاج">زجاج</option>
-                                            <option value="فورميكا">فورميكا</option>
-                                            <option value="شيت">شيت المونيوم</option>
+                                            @foreach ($aluminum_types as $aluminum_type)
+                                                <option value="{{$aluminum_type->id}}">{{$aluminum_type->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
