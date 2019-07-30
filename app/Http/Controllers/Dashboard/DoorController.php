@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+
 use App\AluminumType;
-use App\Woodtype;
+use App\Category;
+use App\Door;
+use App\WoodType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,9 +29,10 @@ class DoorController extends Controller
      */
     public function create()
     {
-        $woodTypes=Woodtype::all();
+        $woodTypes=WoodType::all();
         $aluminum_types=AluminumType::all();
-        return view('dashboard.doors.create')->with(compact(['woodTypes','aluminum_types']));
+        $doorCategory=Category::find(1);
+        return view('dashboard.doors.create')->with(compact(['woodTypes','aluminum_types','doorCategory']));
     }
 
     /**
@@ -39,7 +43,8 @@ class DoorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $door=Door::create($request->all());
+       dd($door);
     }
 
     /**

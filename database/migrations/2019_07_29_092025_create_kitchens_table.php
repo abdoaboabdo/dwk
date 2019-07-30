@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWoodtypesTable extends Migration
+class CreateKitchensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateWoodtypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('woodtypes', function (Blueprint $table) {
+        Schema::create('kitchens', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('color');
+            $table->float('price');
+            $table->text('description');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateWoodtypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('woodtypes');
+        Schema::dropIfExists('kitchens');
     }
 }

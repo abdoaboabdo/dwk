@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDoorTypeId extends Migration
+class CreateWoodTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddDoorTypeId extends Migration
      */
     public function up()
     {
-        Schema::table('products', function($table) {
-            $table->unsignedBigInteger('door_type_id');
-            $table->foreign('door_type_id')->references('id')->on('door_types')->onDelete('cascade');
+        Schema::create('wood_types', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +27,6 @@ class AddDoorTypeId extends Migration
      */
     public function down()
     {
-        Schema::table('products', function($table) {
-            $table->dropColumn('door_type_id');
-        });
+        Schema::dropIfExists('wood_types');
     }
 }

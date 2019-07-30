@@ -34,31 +34,19 @@
                             <div class="row " style="position: relative;">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="door_type">نوع الباب</label>
-                                        <select name="door_type" id="door_type" class="form-control form-control " style="padding: 0 12px">
+                                        <label for="category_id">نوع الباب</label>
+                                        <select name="category_id" id="category_id" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر نوع الباب</option>
-                                            <option value="خشب">باب خشب</option>
-                                            <option value="المونيوم">باب المونيوم</option>
-                                            <option value="حديد">باب حديد</option>
-                                            <option value="ترابزيت">باب ترابزيت</option>
-                                            <option value="استنالس">باب ترابزيت استنالس</option>
+                                            @foreach($doorCategory->children as $child)
+                                                <option value="{{$child->id}}">{{$child->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4 wood" >
                                     <div class="form-group">
-                                        <label for="inside_type">داخلي ¦ خارجي</label>
-                                        <select name="inside_type" id="inside_type" class="form-control form-control " style="padding: 0 12px">
-                                            <option value="">داخلي ¦ خارجي</option>
-                                            <option value="0">داخلي</option>
-                                            <option value="1">خارجي</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 wood" >
-                                    <div class="form-group">
-                                        <label for="Wood_type">نوع الخشب</label>
-                                        <select name="Wood_type" id="Wood_type" class="form-control form-control " style="padding: 0 12px">
+                                        <label for="wood_type_id">نوع الخشب</label>
+                                        <select name="wood_type_id" id="wood_type_id" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر نوع الخشب</option>
                                             @foreach ($woodTypes as $woodType)
                                                 <option value="{{$woodType->id}}">{{$woodType->name}}</option>
@@ -68,8 +56,8 @@
                                 </div>
                                 <div class="col-md-4 aluminum">
                                     <div class="form-group">
-                                        <label for="aluminum_type">نوع الالمونيوم</label>
-                                        <select name="aluminum_type" id="aluminum_type" class="form-control form-control " style="padding: 0 12px">
+                                        <label for="aluminum_type_id">نوع الالمونيوم</label>
+                                        <select name="aluminum_type_id" id="aluminum_type_id" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر نوع الالمونيوم</option>
                                             @foreach ($aluminum_types as $aluminum_type)
                                                 <option value="{{$aluminum_type->id}}">{{$aluminum_type->name}}</option>
@@ -79,8 +67,8 @@
                                 </div>
                                 <div class="col-md-4 aluminum">
                                     <div class="form-group">
-                                        <label for="thickness_type"> السماكة</label>
-                                        <select name="thickness_type" id="thickness_type" class="form-control form-control " style="padding: 0 12px">
+                                        <label for="thickness"> السماكة</label>
+                                        <select name="thickness" id="thickness" class="form-control form-control " style="padding: 0 12px">
                                             <option value="">اختر السماكة</option>
                                             <option value="1.3">1.3</option>
                                             <option value="1.5">1.5</option>
@@ -96,6 +84,14 @@
                                        <input type="text" name="price" id="price" class="form-control " placeholder="ادخل السعر">
                                    </div>
                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="image">@lang('site.image')</label>
+                                        <input type="file" name="image" class="form-control image" id="image"  >
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
@@ -126,13 +122,14 @@
 @section('js')
     <script !src="">
         $(document).ready(function () {
-            $('#door_type').change(function (e) {
-                if (e.target.value === 'خشب'){
+            $('#category_id').change(function (e) {
+                // console.log(e.target.value);
+                if (e.target.value == 4){
                     $('.aluminum').fadeOut(function () {
                         $('.wood').fadeIn()
                     });
 
-                }else if (e.target.value === 'المونيوم'){
+                }else if (e.target.value == 5){
                     $('.wood').fadeOut(function () {
                         $('.aluminum').fadeIn()
                     });

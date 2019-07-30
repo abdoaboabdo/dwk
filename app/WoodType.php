@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AluminumType extends Model
+class WoodType extends Model
 {
     public function doors(){
-        return $this->hasMany(Door::class,'aluminum_type_id');
+        return $this->hasMany(Door::class,'wood_type_id');
     }
 }
