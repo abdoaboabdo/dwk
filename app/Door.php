@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Door extends Model
 {
+    protected $guarded=[];
     public function images(){
         return $this->hasMany(Image::class,'door_id');
     }

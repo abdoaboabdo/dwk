@@ -9,6 +9,7 @@ use App\Door;
 use App\WoodType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class DoorController extends Controller
 {
@@ -43,8 +44,52 @@ class DoorController extends Controller
      */
     public function store(Request $request)
     {
-       $door=Door::create($request->all());
-       dd($door);
+        if ($request->category_id == 4){
+            $request->validate([
+                'category_id' => 'required',
+                'price' => 'required',
+                'description' => 'required',
+                'wood_type_id' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+        }elseif ($request->category_id == 5){
+            $request->validate([
+                'category_id' => 'required',
+                'price' => 'required',
+                'description' => 'required',
+                'aluminum_type_id' => 'required',
+                'thickness' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+        }else{
+            $request->validate([
+                'category_id' => 'required',
+                'price' => 'required',
+                'description' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+        }
+        $requestAll=$request->except(['image']);
+
+        if ($request->image) {
+            $request_data['image'] = $request->image->hashname();
+            //dd($request_data['image'] );
+            //dd($request->image);
+            Image::make($request->image)
+                ->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save(public_path('uploads/doors/' . $request_data['image']));
+        }
+       $door=Door::create($requestAll);
+//        $door->thickness=$request->input('thickness');
+//        $door->price=$request->input('price');
+//        $door->description=$request->input('description');
+//        $door->category_id=$request->input('category_id');
+//        $door->aluminum_type_id=$request->input('aluminum_type_id');
+//        $door->wood_type_id=$request->input('wood_type_id');
+        $door->images()->create($request_data);
+        dd($door);
     }
 
     /**
