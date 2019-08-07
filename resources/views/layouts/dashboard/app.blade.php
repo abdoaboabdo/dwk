@@ -20,6 +20,7 @@
         <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap-rtl.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dashboard/css/rtl.css') }}">
+    <link rel="stylesheet" href="{{asset('css/croppie.css')}}">
 
         <style>
             body, h1, h2, h3, h4, h5, h6 {
@@ -47,6 +48,51 @@
                 -o-transition: transform .5s ease;
                 transition: transform .5s ease;
             }
+             #my-image, #use {
+                 display: none;
+             }
+            .croppie-container{
+                overflow: hidden;
+                height: auto;
+                width: auto;
+            }
+            @media (max-width: 1200px) {
+                .croppie-container .cr-viewport, .croppie-container .cr-resizer{
+                    left: -138px;
+                }
+
+            }
+            @media (max-width: 991px) {
+                .croppie-container .cr-viewport, .croppie-container .cr-resizer{
+                    left: 0px;
+                }
+
+            }
+            @media (max-width: 550px) {
+                .croppie-container .cr-viewport, .croppie-container .cr-resizer{
+                    left: -184px;
+                }
+
+            }
+            .showImage .glyphicon{
+                padding: 5px;
+                background: #CCC;
+                border-radius: 50%;
+                position: absolute;
+                top: 9px;
+                cursor: pointer;
+            }
+            .remove{
+                right: 23px;
+            }
+            .edit{
+                right: 50px;
+            }
+            .increment .remove{
+                display: none;
+            }
+
+
         </style>
     @yield('css')
 {{--    @else--}}
@@ -235,5 +281,6 @@
 
 </script>
 @yield('js')
+@yield('cropImage')
 </body>
 </html>
