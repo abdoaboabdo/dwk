@@ -64,7 +64,7 @@
                                                 @if (auth()->user()->hasPermission('delete_users'))
                                                     <form action="{{route('dashboard.users.destroy',$user->id)}}" method="post" style="display: inline-block">
                                                         @csrf
-                                                        {{--                                                    {{csrf_token()}}--}}
+{{--                                                        {{csrf_token()}}--}}
                                                         {{method_field('delete')}}
                                                         <button class="btn btn-danger delete btn-sm">@lang('site.delete')</button>
                                                     </form>

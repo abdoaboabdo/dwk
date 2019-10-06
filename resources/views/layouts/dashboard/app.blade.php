@@ -23,6 +23,42 @@
     <link rel="stylesheet" href="{{asset('css/croppie.css')}}">
 
         <style>
+            .lds-ring {
+                display: inline-block;
+                position: relative;
+                width: 64px;
+                height: 64px;
+            }
+            .lds-ring div {
+                box-sizing: border-box;
+                display: block;
+                position: absolute;
+                width: 51px;
+                height: 51px;
+                margin: 6px;
+                border: 6px solid #9C0200;
+                border-radius: 50%;
+                animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+                border-color: #9C0200 transparent transparent transparent;
+            }
+            .lds-ring div:nth-child(1) {
+                animation-delay: -0.45s;
+            }
+            .lds-ring div:nth-child(2) {
+                animation-delay: -0.3s;
+            }
+            .lds-ring div:nth-child(3) {
+                animation-delay: -0.15s;
+            }
+            @keyframes lds-ring {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
             body, h1, h2, h3, h4, h5, h6 {
                 font-family: 'Cairo', sans-serif !important;
             }
@@ -56,24 +92,33 @@
                 height: auto;
                 width: auto;
             }
-            @media (max-width: 1200px) {
-                .croppie-container .cr-viewport, .croppie-container .cr-resizer{
-                    left: -138px;
-                }
-
+            .overlay{
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                right: 0;
+                z-index: 5;
+                background-color: #6d6d6d59;
             }
-            @media (max-width: 991px) {
-                .croppie-container .cr-viewport, .croppie-container .cr-resizer{
-                    left: 0px;
-                }
+            /*@media (max-width: 1200px) {*/
+            /*    .croppie-container .cr-viewport, .croppie-container .cr-resizer{*/
+            /*        left: 188px;*/
+            /*    }*/
 
-            }
-            @media (max-width: 550px) {
-                .croppie-container .cr-viewport, .croppie-container .cr-resizer{
-                    left: -184px;
-                }
+            /*}*/
+            /*@media (max-width: 991px) {*/
+            /*    .croppie-container .cr-viewport, .croppie-container .cr-resizer{*/
+            /*        left: 0px;*/
+            /*    }*/
 
-            }
+            /*}*/
+            /*@media (max-width: 550px) {*/
+            /*    .croppie-container .cr-viewport, .croppie-container .cr-resizer{*/
+            /*        left: 192px;*/
+            /*    }*/
+
+            /*}*/
             .showImage .glyphicon{
                 padding: 5px;
                 background: #CCC;
@@ -122,8 +167,12 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-
+<body class="hold-transition skin-blue sidebar-mini" style="position: relative">
+<div class="overlay" style="display: none">
+    <div class="loading" style="position: absolute;z-index: 5;display: block">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>
 <div class="wrapper">
 
     <header class="main-header">
@@ -223,6 +272,7 @@
 
 <script src="{{asset('dashboard/js/custom/image_preview.js')}}"></script>
 <script src="{{asset('dashboard/js/custom/order.js')}}"></script>
+@yield('js')
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree();
@@ -234,11 +284,12 @@
         });
 
         //delete
-        $('.delete').click(function (e) {
-
-            var that = $(this)
-
+        $('body').on("click",".delete",function (e) {
             e.preventDefault();
+
+            var that = $(this);
+
+
 
             var n = new Noty({
                 text: "@lang('site.confirm_delete')",
@@ -247,6 +298,8 @@
                 buttons: [
                     Noty.button("@lang('site.yes')", 'btn btn-success mr-2', function () {
                         that.closest('form').submit();
+                        n.close();
+                        console.log('code After delete')
                     }),
 
                     Noty.button("@lang('site.no')", 'btn btn-primary mr-2', function () {
@@ -267,20 +320,36 @@
 
                 reader.onload = function (e) {
                     $('.image-preview').attr('src', e.target.result);
-                }
+                };
 
                 reader.readAsDataURL(this.files[0]);
             }
 
         });
+        $('.overlay').css({
+            'width':($(window).width() ) + 'px',
+            'height':($(window).width() ) + 'px'
+        });
+        $('.loading').css({
+            "margin-right": (($(window).width() - 64)/2 + 'px'),
+            "margin-top": (($(window).height() - 69)/2 + 'px')
+        });
+        $(window).resize(function () {
+            $('.loading').css({
+                "margin-right": (($(window).width() - 64)/2 + 'px'),
+                "margin-top": (($(window).height() - 69)/2 + 'px')
+            });
+            $('.overlay').css({
+                'width':($(window).width() ) + 'px',
+                'height':($(window).height() ) + 'px'
+            });
+        });
 
         CKEDITOR.config.language =  "{{ app()->getLocale() }}";
 
     });//end of ready
-
-
 </script>
-@yield('js')
+
 @yield('cropImage')
 </body>
 </html>

@@ -25,6 +25,15 @@
                     <li class="{{Request::is('dashboard/doors/create') ? 'active':' '}}"><a href="{{route('dashboard.doors.create')}}"><i class="fa fa-circle-o"></i>اضافة باب جديد</a></li>
                 </ul>
             </li>
+            <li class=" treeview {{Request::is('dashboard/handrails') || Request::is('dashboard/handrails/create') ? 'active' : ' '}}">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>الدرابزين</span> <i class="fa fa-angle-right pull-left"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{Request::is('dashboard/handrails') ? 'active':' '}}"><a href="{{route('dashboard.handrails.index')}}"><i class="fa fa-circle-o"></i>كل الدرابزين</a></li>
+                    <li class="{{Request::is('dashboard/handrails/create') ? 'active':' '}}"><a href="{{route('dashboard.handrails.create')}}"><i class="fa fa-circle-o"></i>اضافة درابزين جديد</a></li>
+                </ul>
+            </li>
             <li class=" treeview {{Request::is('dashboard/windows') || Request::is('dashboard/windows/create') ? 'active' : ' '}}">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>النوافذ</span> <i class="fa fa-angle-right pull-left"></i>
@@ -43,9 +52,9 @@
                     <li class="{{Request::is('dashboard/kitchens/create') ? 'active':' '}}"><a href="{{route('dashboard.kitchens.create')}}"><i class="fa fa-circle-o"></i>اضافة مطبخc جديد</a></li>
                 </ul>
             </li>
-            @if (auth()->user()->hasPermission('read_users'))
-                <li class="{{Request::is('/dashboard/users') | Request::is('/dashboard/users/create') ? 'active': ' '}}"><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-th"></i><span>@lang('site.users')</span></a></li>
-            @endif
+{{--            @if (auth()->user()->hasPermission('read_users'))--}}
+{{--                <li class="{{Request::is('/dashboard/users') | Request::is('/dashboard/users/create') ? 'active': ' '}}"><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-th"></i><span>@lang('site.users')</span></a></li>--}}
+{{--            @endif--}}
             {{--            @if (auth()->user()->hasPermission('read_categories'))--}}
             {{--                <li class="{{Request::is(LaravelLocalization::getCurrentLocale().'/dashboard/categories') | Request::is(LaravelLocalization::getCurrentLocale().'/dashboard/categories/create') ? 'active': ' '}}"><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-th"></i><span>@lang('site.categories')</span></a></li>--}}
             {{--            @endif--}}
